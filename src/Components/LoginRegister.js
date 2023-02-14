@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import { register } from '../api';
+import {Navigate} from "react-router-dom";
+import { register, login } from '../api';
 
 const LoginRegister =(props) =>{
     const {user, setUser, token, setToken} = props;
@@ -8,24 +9,37 @@ const LoginRegister =(props) =>{
     const [rError, setRError] = useState("");
     const [registerName, setRegisterName] = useState("");
     const [registerPassword, setRegisterPassword] =useState("");
+    const [loginUser, setLoginUser] =useState("");
+    const [loginPass, setLoginPass] = useState("");
 
 
     const goRegister = async(ev) =>
     {
         
         ev.preventDefault();
-        await register(registerName, registerPassword,setRError,setRegisterName, setRegisterPassword);
+        await register(registerName, registerPassword,setRError);
         setRegisterName("");
         setRegisterPassword("");
         
     }
 
+    const goSignIn = async(ev) =>
+    {
+        ev.preventDefault();
+        await LoginRegister(setToken, setUser,setLError, loginUser, loginPass);
+        setLoginPass("");
+        setLoginUser("");
+        
+        //move the user to their personal page.
+    }
+
     return <div id="userAcess">
         <div id="login">
-            <form>
-                <input placeholder="Username"></input>
-                <input placeholder="Password"></input>
+            <form onSubmit={goSignIn}>
+                <input placeholder="Username" onChange={setLoginUser(ev.target.value)}></input>
+                <input placeholder="Password" type="password" onChange={setLoginPass(ev.target.value)}></input>
                 <button>Login</button>
+                <h6 className="error">{lError}</h6>
             </form>
         </div>
         <div id="register">

@@ -9,7 +9,8 @@ export const getRoutines = ( async(setRoutines) =>{
   .catch(console.error);
 });
 
-export const register = (async(registerName, registerPassword, setRError, setRegisterName, setRegisterPassword) =>{
+//functions that handle registration and loging in
+export const register = (async(registerName, registerPassword, setRError) =>{
   fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
   method: "POST",
   headers: {
@@ -24,6 +25,26 @@ export const register = (async(registerName, registerPassword, setRError, setReg
     console.log(result);
     setRError(result.message);
     
+  })
+  .catch(console.error);
+})
+
+export const login = (async(setToken, setUser,setLError, loginUser, loginPass) =>{
+  fetch('http://fitnesstrac-kr.herokuapp.com/api/users/login', {
+  method: "POST",
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    username: `${loginUser}`,
+    password: `${loginPass}`
+  })
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+    setUser(result.user);
+    setToken(result.token);
+    setLError(result.message);
   })
   .catch(console.error);
 })
