@@ -7,7 +7,7 @@ const Header =(props) =>{
             <ul>
             <li className="Links">Login/Register</li>
             <Link to = '/routines' className="Links">Routines</Link>
-            <li className="Links">Activities</li>
+            <Link to = '/activities' className="Links">Activities</Link>
             </ul>
         </nav>
       </header>
