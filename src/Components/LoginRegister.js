@@ -15,8 +15,8 @@ const LoginRegister =(props) =>{
         
         ev.preventDefault();
         await register(registerName, registerPassword,setRError,setRegisterName, setRegisterPassword);
-        
-        
+        setRegisterName("");
+        setRegisterPassword("");
         
     }
 
