@@ -4,15 +4,20 @@ import { register } from '../api';
 const LoginRegister =(props) =>{
     const {user, setUser, token, setToken} = props;
 
-    const [error, setError] = useState("");
+    const [lError, setLError] = useState("");
+    const [rError, setRError] = useState("");
     const [registerName, setRegisterName] = useState("");
     const [registerPassword, setRegisterPassword] =useState("");
 
 
-    const submit = async(ev) =>
+    const goRegister = async(ev) =>
     {
+        
         ev.preventDefault();
-        await register(registerName, registerPassword,setError);
+        await register(registerName, registerPassword,setRError,setRegisterName, setRegisterPassword);
+        
+        
+        
     }
 
     return <div id="userAcess">
@@ -24,13 +29,14 @@ const LoginRegister =(props) =>{
             </form>
         </div>
         <div id="register">
-            <form onSubmit={submit}>
+            <form onSubmit={goRegister}>
                 <input placeholder="Username" onChange={ev => setRegisterName(ev.target.value)}></input>
-                <input placeholder="Password" onChange={ev => setRegisterPassword(ev.target.value)}></input>
+                <input placeholder="Password" type="password" onChange={ev => setRegisterPassword(ev.target.value)}></input>
                 <button>Register</button>
+                <h6 className="error">{rError}</h6>
             </form>
         </div>
-        <p className="error">{error}</p>
+        
     </div>
 }
 
