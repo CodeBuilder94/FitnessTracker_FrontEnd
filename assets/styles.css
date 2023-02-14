@@ -25,3 +25,15 @@ nav ul{
 .ByLine > * {
   margin-right: .5rem;
 }
+
+/*Login Page*/
+#userAcess{
+  display: flex;
+  justify-content: center;
+}
+
+#login >form, #register >form{
+  display: flex;
+  flex-direction: column;
+  margin-left: 1.5rem;
+}
