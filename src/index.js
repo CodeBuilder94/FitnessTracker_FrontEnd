@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {HashRouter, Routes ,Route, Navigate} from 'react-router-dom';
-import { getRoutines, stayIn } from './api';
+import { getRoutines, stayIn, getActivities } from './api';
 import { Header, Routines, Activities, LoginRegister} from './Components';
 const App = ()=> {
 
@@ -14,6 +14,7 @@ const App = ()=> {
   useEffect(()=>{
     getRoutines(setRoutines);
     stayIn(setToken, setUser);
+    getActivities(setActivities);
   },[routines, token])
 
   
@@ -27,7 +28,7 @@ const App = ()=> {
         <Routes>
           <Route path = '/signIn' element={<LoginRegister user={user} setUser={setUser} token={token} setToken={setToken} />}/>
           <Route path='/routines' element={<Routines routines={routines}/>}/>
-          <Route path ='/activities' element={<Activities activities={activities} setActivities={setActivities}/>}/>
+          <Route path ='/activities' element={<Activities activities={activities} />}/>
           <Route path='/' element={<Navigate to="/routines"/> /*makes the routines page default for now.*/}/>
         </Routes>
       }
