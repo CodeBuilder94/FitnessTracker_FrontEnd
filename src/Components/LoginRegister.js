@@ -26,7 +26,7 @@ const LoginRegister =(props) =>{
     const goSignIn = async(ev) =>
     {
         ev.preventDefault();
-        await LoginRegister(setToken, setUser,setLError, loginUser, loginPass);
+        await login(setToken, setUser,setLError, loginUser, loginPass);
         setLoginPass("");
         setLoginUser("");
         
