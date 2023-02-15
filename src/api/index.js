@@ -41,7 +41,7 @@ export const login = (async(setToken, setUser,setLError, loginUser, loginPass) =
   })
 }).then(response => response.json())
   .then(result => {
-    console.log(result);
+    
     setUser(result.user);
     setToken(result.token);
     setLError(result.message);
@@ -53,31 +53,27 @@ export const login = (async(setToken, setUser,setLError, loginUser, loginPass) =
   .catch(console.error);
 })
 
-export const logout = (setUser, setToken) =>
+export const logout = () =>
 {
   
   window.localStorage.removeItem('token');
-  console.log(window.localStorage.getItem());
-  setUser({});
-  setToken(null);
+  
 }
 
-export const stayIn = (async(setToken, setUser) =>
-{
-  const token = window.localStorage.getItem('token');
-
+export const stayIn = async(token) =>
+{  console.log(token);
   if(token)
   {
     fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/me`,{
       headers:{
         'Content-Type': 'application/json',
-        'Authroization': `Bearer ${token}`
+        'Authorization': `Bearer ${token}`
       },
     }).then(response => response.json())
     .then(result => {
-      const user =result.data;
-      setToken(token);
-      setUser(user);
+      const user =result;
+      console.log(user);
+      return user;
 
     })
     .catch(err => console.log(err));
@@ -88,4 +84,4 @@ export const stayIn = (async(setToken, setUser) =>
     setUser({});
     setToken(null);
   }
-})
+}
