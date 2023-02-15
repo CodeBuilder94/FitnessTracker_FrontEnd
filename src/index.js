@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {HashRouter, Routes ,Route, Navigate} from 'react-router-dom';
-import { getRoutines } from './api';
+import { getRoutines, stayIn } from './api';
 import { Header, Routines, Activities, LoginRegister} from './Components';
 const App = ()=> {
 
@@ -13,15 +13,15 @@ const App = ()=> {
 
   useEffect(()=>{
     getRoutines(setRoutines);
-    
-  },[routines])
+    stayIn(setToken, setUser);
+  },[routines, token])
 
   
 
   return (
     <div>
       <h1>Fitness Tracker</h1>
-      <Header token={token}/>
+      <Header token={token} setUser={setUser} setToken={setToken}/>
       <div className='main'>
       {
         <Routes>
