@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import {Navigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import { register, login } from '../api';
 
 const LoginRegister =(props) =>{
     const {setUser, setToken} = props;
+    const navigate = useNavigate();
 
     const [lError, setLError] = useState("");
     const [rError, setRError] = useState("");
@@ -31,6 +32,7 @@ const LoginRegister =(props) =>{
         setLoginUser("");
         
         //move the user to their personal page.
+        navigate('/routines');
     }
 
     return <div id="userAcess">
