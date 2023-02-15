@@ -21,7 +21,7 @@ const App = ()=> {
   return (
     <div>
       <h1>Fitness Tracker</h1>
-      <Header />
+      <Header token={token}/>
       <div className='main'>
       {
         <Routes>

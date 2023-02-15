@@ -3,7 +3,7 @@ import {Navigate} from "react-router-dom";
 import { register, login } from '../api';
 
 const LoginRegister =(props) =>{
-    const {user, setUser, token, setToken} = props;
+    const {setUser, setToken} = props;
 
     const [lError, setLError] = useState("");
     const [rError, setRError] = useState("");
@@ -36,8 +36,8 @@ const LoginRegister =(props) =>{
     return <div id="userAcess">
         <div id="login">
             <form onSubmit={goSignIn}>
-                <input placeholder="Username" onChange={setLoginUser(ev.target.value)}></input>
-                <input placeholder="Password" type="password" onChange={setLoginPass(ev.target.value)}></input>
+                <input placeholder="Username" onChange={ev => setLoginUser(ev.target.value)}></input>
+                <input placeholder="Password" type="password" onChange={ ev => setLoginPass(ev.target.value)}></input>
                 <button>Login</button>
                 <h6 className="error">{lError}</h6>
             </form>
