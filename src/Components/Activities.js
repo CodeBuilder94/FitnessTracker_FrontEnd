@@ -1,9 +1,12 @@
 import React from "react";
+import { getActivities } from "../api";
 
 const Activities =(props) =>{
 
+
     const {activities,setActivities} = props;
      getActivities(setActivities);
+
     return <ul>{
 
              activities.map((activity)=>{

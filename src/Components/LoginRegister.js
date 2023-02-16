@@ -1,5 +1,7 @@
 import React, {useState} from "react";
+
 import {useNavigate} from "react-router-dom";
+
 import { register, login } from '../api';
 
 const LoginRegister =(props) =>{
@@ -32,7 +34,9 @@ const LoginRegister =(props) =>{
         setLoginUser("");
         
         //move the user to their personal page.
-        navigate('/routines');
+
+        navigate('/MyRoutines');
+
     }
 
     return <div id="userAcess">
