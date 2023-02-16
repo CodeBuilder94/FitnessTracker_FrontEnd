@@ -9,6 +9,7 @@ export const getRoutines = ( async(setRoutines) =>{
   .catch(console.error);
 });
 
+
 //functions that handle registration and loging in
 export const register = (async(registerName, registerPassword, setRError) =>{
   fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
