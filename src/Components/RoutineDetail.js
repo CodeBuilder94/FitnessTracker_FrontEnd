@@ -19,11 +19,11 @@ const RoutineDetail =(props) =>
 
     const routine = routines.find(routine => routine.id === id);
 
-    const [newName, setnewName] = useState(routine.name);
-    const [newGoal, setNewGoal] = useState(routine.goal);
+    //const [newName, setnewName] = useState(routine.name);
+    //const [newGoal, setNewGoal] = useState(routine.goal);
     
-    return <div id="RoutineDetails">
-
+    return <div>{routine ?<div id="RoutineDetails">
+            
                 <h2>{routine.name}</h2>
                 {user.id === routine.creatorId ? <button onClick={setEdit(true)}>Edit Routine</button>:null}
                 <h3>Goal: {routine.goal}</h3>
@@ -44,7 +44,9 @@ const RoutineDetail =(props) =>
                 <form>
                     <input placeholder="newName"></input>
                     <input placeholder="newGoal"></input>
-                </form>
+                </form> 
+                
+            </div>:null}
             </div>
 }
 

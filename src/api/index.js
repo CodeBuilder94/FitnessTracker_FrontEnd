@@ -84,3 +84,19 @@ export const stayIn = async(token) =>
     
   }
 }
+
+//create a new routine
+export const CreateRoutine = (routineName, routineGoal) =>{
+  fetch('http://fitnesstrac-kr.herokuapp.com/api/routines', {
+  method: "POST",
+  body: JSON.stringify({
+    name: `${routineName}`,
+    goal: `${routineGoal}`,
+    isPublic: true
+  })
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch(console.error);
+}
