@@ -12,10 +12,22 @@ const App = ()=> {
   
 
   useEffect(()=>{
-    getRoutines(setRoutines);
-    stayIn(setToken, setUser);
-    getActivities(setActivities);
-  },[routines, token])
+
+
+    const checkLogin = async () =>{
+      if(window.localStorage.getItem("token"))
+      {
+        const token = window.localStorage.getItem("token");
+        setToken(token);
+        const userInfo =await stayIn(token);
+        setUser(userInfo);
+      }
+    }
+
+    checkLogin();
+   
+  },[])
+
 
   
 
@@ -27,9 +39,10 @@ const App = ()=> {
       {
         <Routes>
           <Route path = '/signIn' element={<LoginRegister user={user} setUser={setUser} token={token} setToken={setToken} />}/>
-          <Route path='/routines' element={<Routines routines={routines}/>}/>
-          <Route path ='/activities' element={<Activities activities={activities} />}/>
-          <Route path ='/Home' element={<Home user={user}/>}/>
+
+          <Route path='/routines' element={<Routines routines={routines} setRoutines={setRoutines}/>}/>
+          <Route path ='/activities' element={<Activities activities={activities} setActivities={setActivities}/>}/>
+
           <Route path='/' element={<Navigate to="/routines"/> /*makes the routines page default for now.*/}/>
         </Routes>
       }
