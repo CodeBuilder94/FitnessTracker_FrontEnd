@@ -2,6 +2,11 @@ body {
   font-family: verdana;
 }
 
+#title {
+  display: flex;
+  justify-content: center;
+}
+
 nav ul{
   display: flex;
   flex-direction: row;
@@ -37,3 +42,8 @@ nav ul{
   flex-direction: column;
   margin-left: 1.5rem;
 }
+
+#leftNav {
+  display: flex;
+  justify-content: left;
+}   

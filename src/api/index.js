@@ -9,7 +9,7 @@ export const getRoutines = ( async(setRoutines) =>{
   .catch(console.error);
 });
 
-//fetcjing data from activities
+//fetching data from activities
 export const getActivities = (async(setActivities) =>{
   fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
     headers: {
