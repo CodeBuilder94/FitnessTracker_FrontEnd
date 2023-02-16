@@ -9,18 +9,7 @@ export const getRoutines = ( async(setRoutines) =>{
   .catch(console.error);
 });
 
-export const getActivities =(async(setActivities)=>{
-fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
-  headers: {
-    'Content-Type': 'application/json',
-  },
-}).then(response => response.json())
-  .then(result => {
-    console.log(result); 
-    setActivities(result);
-  })
-  .catch(console.error);
-});
+
 //functions that handle registration and loging in
 export const register = (async(registerName, registerPassword, setRError) =>{
   fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
@@ -40,6 +29,9 @@ export const register = (async(registerName, registerPassword, setRError) =>{
   })
   .catch(console.error);
 })
+
+// function that populates the users personal routines
+
 
 export const login = (async(setToken, setUser,setLError, loginUser, loginPass) =>{
   fetch('http://fitnesstrac-kr.herokuapp.com/api/users/login', {
@@ -93,7 +85,22 @@ export const stayIn = async(token) =>
   else if(token === undefined)
   {
     window.localStorage.removeItem('token');
-    setUser({});
-    setToken(null);
+    
   }
+}
+
+//create a new routine
+export const CreateRoutine = (routineName, routineGoal) =>{
+  fetch('http://fitnesstrac-kr.herokuapp.com/api/routines', {
+  method: "POST",
+  body: JSON.stringify({
+    name: `${routineName}`,
+    goal: `${routineGoal}`,
+    isPublic: true
+  })
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch(console.error);
 }
