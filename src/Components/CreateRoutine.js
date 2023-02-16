@@ -13,7 +13,7 @@ const CreateRoutine =(props) =>{
         CreateRoutine(routineName, routineGoal);
         setRoutineGoal("");
         setRoutineName("");
-        getRoutines(setRoutines);
+        //Have the getRoutines run in the MyRoutines component or getRoutines(setRoutines);
     }
 
     return <div id="CreateForm">

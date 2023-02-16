@@ -10,9 +10,37 @@ export const getRoutines = ( async(setRoutines) =>{
 });
 
 
+//fetching user routines into My Routines page
+export const getUserRoutines = async (setUserRoutines, user) => {
+  fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/${user.username}/routines`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(response => response.json())
+    .then(result => {
+      console.log(result);
+      setUserRoutines(result);
+    })
+    .catch(console.error);
+  };
+
+//fetching data from activities
+export const getActivities = (async(setActivities) =>{
+  fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(response => response.json())
+    .then(result => {
+      //console.log(result);
+      setActivities(result);
+    })
+    .catch(console.error);
+  });
+
 //functions that handle registration and loging in
-export const register = (async(registerName, registerPassword, setRError) =>{
-  fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
+export const register = (async(registerName, registerPassword) =>{
+  return fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
   method: "POST",
   headers: {
     'Content-Type': 'application/json',
@@ -23,18 +51,17 @@ export const register = (async(registerName, registerPassword, setRError) =>{
   })
 }).then(response => response.json())
   .then(result => {
-    console.log(result);
-    setRError(result.message);
+    
+    return result;
     
   })
-  .catch(console.error);
 })
 
 // function that populates the users personal routines
 
 
-export const login = (async(setToken, setUser,setLError, loginUser, loginPass) =>{
-  fetch('http://fitnesstrac-kr.herokuapp.com/api/users/login', {
+export const login = (async(loginUser, loginPass) =>{
+  return fetch('http://fitnesstrac-kr.herokuapp.com/api/users/login', {
   method: "POST",
   headers: {
     'Content-Type': 'application/json',
@@ -46,15 +73,11 @@ export const login = (async(setToken, setUser,setLError, loginUser, loginPass) =
 }).then(response => response.json())
   .then(result => {
     
-    setUser(result.user);
-    setToken(result.token);
-    setLError(result.message);
-    
     //set the token in localStorage
     const token =result.token;
     window.localStorage.setItem("token", token)
+    return result;
   })
-  .catch(console.error);
 })
 
 export const logout = () =>
@@ -65,7 +88,7 @@ export const logout = () =>
 }
 
 export const stayIn = async(token) =>
-{  console.log(token);
+{  //console.log(token);
   if(token)
   {
     fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/me`,{

@@ -6,7 +6,7 @@ const Routines = (props) =>
 {
     const {routines, setRoutines, user} = props;
     
-    getRoutines(setRoutines);
+   getRoutines(setRoutines);
     return <div>
         <h2>Routines</h2>
         <ul>

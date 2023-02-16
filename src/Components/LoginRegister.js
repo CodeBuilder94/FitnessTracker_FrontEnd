@@ -20,7 +20,8 @@ const LoginRegister =(props) =>{
     {
         
         ev.preventDefault();
-        await register(registerName, registerPassword,setRError);
+       const result = await register(registerName, registerPassword);
+       setRError(result.message);
         setRegisterName("");
         setRegisterPassword("");
         
@@ -29,12 +30,16 @@ const LoginRegister =(props) =>{
     const goSignIn = async(ev) =>
     {
         ev.preventDefault();
-        await login(setToken, setUser,setLError, loginUser, loginPass);
+       const result = await login(loginUser, loginPass)
         setLoginPass("");
         setLoginUser("");
         
+        
+        setUser(result.user.username);
+        setToken(result.token);
+        setLError(result.message);
+        
         //move the user to their personal page.
-
         navigate('/MyRoutines');
 
     }
