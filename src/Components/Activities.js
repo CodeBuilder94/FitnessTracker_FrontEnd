@@ -1,10 +1,14 @@
 import React from "react";
+import { getActivities } from "../api";
 
 const Activities =(props) =>{
 
-    const {activities} = props;
+
+    const {activities,setActivities} = props;
+     getActivities(setActivities);
 
     return <ul>{
+
                    activities.map((activity)=>{
                      return <li key={activity.id} className="activity">
                         {<div>
@@ -21,6 +25,16 @@ const Activities =(props) =>{
              </ul>
 
 
-}
 
+
+      }</ul>
+  
+  
+  
+  
+  
+  
+  
+  
+  }
 export default Activities;
