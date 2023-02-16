@@ -32,7 +32,7 @@ const LoginRegister =(props) =>{
         setLoginUser("");
         
         //move the user to their personal page.
-        navigate('/Home');
+        navigate('/MyRoutines');
     }
 
     return <div id="userAcess">
