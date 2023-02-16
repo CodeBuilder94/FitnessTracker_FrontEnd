@@ -1,35 +1,28 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import { getRoutines } from "../api";
 
 const Routines = (props) =>
 {
-    const {routines, setRoutines} = props;
+    const {routines, setRoutines, user} = props;
+    
     getRoutines(setRoutines);
-    return <ul>
+    return <div>
+        <h2>Routines</h2>
+        <ul>
         {
             routines.map((routine) =>{
-                return <li key={routine.id} className="routine">
+                return <li key={routine.id} className={user.id == routine.creatorId ? "routine MyRoutine":"routine"}>
                     {<div>
-                        <div className="ByLine"><h4>{routine.name}</h4><h5>By: {routine.creatorName}</h5></div>
+                        <div className="ByLine"><h4><Link to={`/routines/:${routine.id}`}>{routine.name}</Link></h4><h5>By: {routine.creatorName}</h5></div>
                         <p><b>Goal: </b>{routine.goal}</p>
-                        <h5>Activities</h5>
-                        <ol>
-                        {
-                            routine.activities.map((activity) =>{
-                                return<li key={activity.id}>{
-                                    <div>
-                                        <h6>{activity.name}</h6>
-                                    </div>
-                                }</li>
-                            })
-                        }
-                        </ol>
                     </div>
                     }
                 </li>
             })
         }
     </ul>
+    </div>
 }
 
 export default Routines;
