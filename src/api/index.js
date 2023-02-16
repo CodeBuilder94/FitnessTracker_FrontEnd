@@ -81,7 +81,6 @@ export const stayIn = async(token) =>
   else if(token === undefined)
   {
     window.localStorage.removeItem('token');
-    setUser({});
-    setToken(null);
+    
   }
 }
