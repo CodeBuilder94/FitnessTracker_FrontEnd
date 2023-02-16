@@ -27,14 +27,5 @@ const Activities =(props) =>{
 
 
 
-      }</ul>
-  
-  
-  
-  
-  
-  
-  
-  
-  }
+      }
 export default Activities;
