@@ -1,3 +1,4 @@
+
 import React, {useState} from "react";
 import {getUserRoutines, stayIn, deleteRoutine} from "../api";
 import {Link} from "react-router-dom";
@@ -58,9 +59,10 @@ const MyRoutines = (props) =>{
         </ul>
         </div>:null}
         <CreateRoutine setRoutines={setRoutines}/>
+
     </div>
+    </form>
+  );
+};
 }
-
-  
-
 export default MyRoutines
