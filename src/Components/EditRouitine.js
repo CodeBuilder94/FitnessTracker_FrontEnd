@@ -1,18 +1,17 @@
- import React, { useState } from "react";
- 
- const EditRoutine = (props) => {
-    const { routines, setRoutines } = props;
-  
-    const [editRoutineName, setEditRoutineName] = useState("");
-    const [editRoutineGoal, setEditRoutineGoal] = useState("");
-  
-   
- const submit = (ev) => {
+import React, { useState } from "react";
+
+const EditRoutine = (props) => {
+  const { routines, setRoutines, currentRId } = props;
+
+  const [editRoutineName, setEditRoutineName] = useState("");
+  const [editRoutineGoal, setEditRoutineGoal] = useState("");
+
+  const submit = (ev) => {
     ev.preventDefault();
-    EditRoutine(editRoutineName, editRoutineoutineGoal);
+    updateRoutine(editRoutineName, editRoutineGoal, currentRId);
     setEditRoutineGoal("");
     setEditRoutineName("");
-    getRoutines(setRoutines);
+    //getRoutines(setRoutines);
   };
 
   return (

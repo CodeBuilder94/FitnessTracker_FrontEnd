@@ -33,6 +33,7 @@ const RoutineDetail =(props) =>
 
     const routine = routines.find(routine => routine.id === id);
     
+    const [currentRId, setCurrnetRId] = useState(routine.id);
 
     //const [newName, setnewName] = useState(routine.name);
     //const [newGoal, setNewGoal] = useState(routine.goal);

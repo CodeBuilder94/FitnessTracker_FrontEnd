@@ -154,3 +154,22 @@ export const deleteRoutine = async(id) =>
   })
   .catch(console.error);
 }
+
+// edit a routine
+
+export const updateRoutine = async(editRoutineName, editRoutineGoal, currentRId) => {
+
+  const token = window.localStorage.getItem("token");
+
+  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${editRoutineId}`, {
+  method: "PATCH",
+  body: JSON.stringify({
+    name: `${editRoutineName}`,
+    goal: `${editRoutineGoal}`
+  })
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch(console.error);
+}
