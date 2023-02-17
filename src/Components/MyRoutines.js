@@ -10,27 +10,26 @@ const MyRoutines = (props) =>{
     
     const getRoutines = async() =>{
         
-
+        
         const routineList = await getUserRoutines(user);
         setUserRoutines(routineList);
+        
     }
 
     const getToken = async() =>{
         const token = window.localStorage.getItem("token");
         const userInfo =await stayIn(token);
         setUser(userInfo);
-        console.log(user);
+        
     }
 
-    if(userRoutines)
-    {
+    
         if(!user)
         {
             getToken();
         }
           
-        getRoutines(); 
-    }
+        getRoutines();
     
 
     return<div>
@@ -44,7 +43,7 @@ const MyRoutines = (props) =>{
             {
                 return <li key={routine.id}>
                     <h3>{routine.name}</h3>
-                    <p>Goal: {routine.goal}</p>
+                    <p><b>Goal:</b> {routine.goal}</p>
                 </li>
             })
             :null }

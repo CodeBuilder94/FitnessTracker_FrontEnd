@@ -13,13 +13,14 @@ export const getRoutines = ( async() =>{
 
 //fetching user routines into My Routines page
 export const getUserRoutines = async (user) => {
-  fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/${user.username}/routines`, {
+  const token = window.localStorage.getItem('token');
+  return fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/${user.username}/routines`, {
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     },
   }).then(response => response.json())
     .then(result => {
-      
       return result;
     })
     .catch(console.error);
@@ -114,9 +115,15 @@ export const stayIn = async(token) =>
 }
 
 //create a new routine
-export const MakeRoutine = (routineName, routineGoal, token) =>{
+export const MakeRoutine = (routineName, routineGoal) =>{
+  
+  const token = window.localStorage.getItem("token");
+
   fetch('http://fitnesstrac-kr.herokuapp.com/api/routines', {
-  method: "POST",
+  method: "POST",headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
   body: JSON.stringify({
     name: `${routineName}`,
     goal: `${routineGoal}`,
