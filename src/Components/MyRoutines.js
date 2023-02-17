@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {getUserRoutines, stayIn} from "../api";
+import {Link} from "react-router-dom";
 import { CreateRoutine } from "/";
 
 const MyRoutines = (props) =>{
@@ -42,7 +43,7 @@ const MyRoutines = (props) =>{
             userRoutines.map((routine) =>
             {
                 return <li key={routine.id}>
-                    <h3>{routine.name}</h3>
+                    <h3><Link to ={`/routines/:${routine.id}`}>{routine.name}</Link></h3>
                     <p><b>Goal:</b> {routine.goal}</p>
                 </li>
             })
