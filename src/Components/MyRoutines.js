@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import {getUserRoutines, stayIn} from "../api";
+import {getUserRoutines, stayIn, deleteRoutine} from "../api";
 import {Link} from "react-router-dom";
 import { CreateRoutine } from "/";
 
 const MyRoutines = (props) =>{
-    const {user, setUser, token} = props;
+    const {user, setUser, setRoutines} = props;
     
     const [userRoutines, setUserRoutines] = useState([]);
 
@@ -32,6 +32,10 @@ const MyRoutines = (props) =>{
           
         getRoutines();
     
+    const remove =(id) =>
+    {
+        deleteRoutine(id);
+    }
 
     return<div>
         {user ?<div>
@@ -44,6 +48,7 @@ const MyRoutines = (props) =>{
             {
                 return <li key={routine.id}>
                     <h3><Link to ={`/routines/:${routine.id}`}>{routine.name}</Link></h3>
+                    <button onClick={() => remove(routine.id)}>Delete</button>
                     <p><b>Goal:</b> {routine.goal}</p>
                 </li>
             })
@@ -52,7 +57,7 @@ const MyRoutines = (props) =>{
         }
         </ul>
         </div>:null}
-        <CreateRoutine/>
+        <CreateRoutine setRoutines={setRoutines}/>
     </div>
 }
 
