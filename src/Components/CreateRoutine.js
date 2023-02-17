@@ -3,7 +3,7 @@ import { getRoutines, MakeRoutine } from "../api";
 
 const CreateRoutine =(props) =>{
     
-    const {token} = props;
+    const {setRoutines} = props;
 
     const [routineName, setRoutineName] = useState("");
     const [routineGoal, setRoutineGoal] = useState("");
@@ -12,10 +12,13 @@ const CreateRoutine =(props) =>{
     const submit = async (ev) =>{
         
         ev.preventDefault();
+        const token = window.localStorage.getItem("token");
         await MakeRoutine(routineName, routineGoal, token);
         setRoutineGoal("");
         setRoutineName("");
         //Have the getRoutines run in the MyRoutines component or getRoutines(setRoutines);
+        const routineList = await getRoutines();
+        setRoutines(routineList);
     }
 
     return <div id="CreateForm">
