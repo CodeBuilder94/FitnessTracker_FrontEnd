@@ -4,7 +4,7 @@ import { getRoutines } from "../api";
 
 const RoutineDetail =(props) =>
 {
-    const {routines, setRoutines, user} = props;
+    const {routines, setRoutines, user, activities} = props;
     
     const [Edit, setEdit] = useState(false);
 

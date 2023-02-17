@@ -28,7 +28,7 @@ export const getUserRoutines = async (user) => {
 
 //fetching data from activities
 export const getActivities = (async(setActivities) =>{
-  fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
+  return fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -36,6 +36,7 @@ export const getActivities = (async(setActivities) =>{
     .then(result => {
       //console.log(result);
       setActivities(result);
+      return result;
     })
     .catch(console.error);
   });
