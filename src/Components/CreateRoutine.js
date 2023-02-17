@@ -1,19 +1,24 @@
 import React, {useState} from "react";
-import { getRoutines } from "../api";
+import { getRoutines, MakeRoutine } from "../api";
 
 const CreateRoutine =(props) =>{
-    const {routines, setRoutines} = props
+    
+    const {setRoutines} = props;
 
     const [routineName, setRoutineName] = useState("");
     const [routineGoal, setRoutineGoal] = useState("");
 
 
-    const submit =(ev) =>{
+    const submit = async (ev) =>{
+        
         ev.preventDefault();
-        CreateRoutine(routineName, routineGoal);
+        const token = window.localStorage.getItem("token");
+        await MakeRoutine(routineName, routineGoal, token);
         setRoutineGoal("");
         setRoutineName("");
         //Have the getRoutines run in the MyRoutines component or getRoutines(setRoutines);
+        const routineList = await getRoutines();
+        setRoutines(routineList);
     }
 
     return <div id="CreateForm">

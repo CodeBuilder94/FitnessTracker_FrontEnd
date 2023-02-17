@@ -23,6 +23,7 @@ const App = ()=> {
         setToken(token);
         const userInfo =await stayIn(token);
         setUser(userInfo);
+        
       }
     }
 
@@ -43,6 +44,7 @@ const App = ()=> {
           <Route path = '/signIn' element={<LoginRegister user={user} setUser={setUser} token={token} setToken={setToken} />}/>
           <Route path='/routines' element={<Routines routines={routines} setRoutines={setRoutines} user={user}/>}/>
           <Route path ='/activities' element={<Activities activities={activities} setActivities={setActivities}/>}/>
+          <Route path = '/MyRoutines' element = {<MyRouitines user={user} setUser={setUser} setRoutines={setRoutines}/>}/>
           <Route path = '/routines/:routineId' element={<RoutineDetail routines={routines} setRoutines={setRoutines} user={user} />}/>
           <Route path='/' element={<Navigate to="/routines"/> /*makes the routines page default for now.*/}/>
         </Routes>
