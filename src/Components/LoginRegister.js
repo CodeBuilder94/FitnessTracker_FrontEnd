@@ -35,7 +35,7 @@ const LoginRegister =(props) =>{
         setLoginUser("");
         
         
-        setUser(result.user.username);
+        setUser(result.user);
         setToken(result.token);
         setLError(result.message);
         

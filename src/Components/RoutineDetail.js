@@ -8,10 +8,15 @@ const RoutineDetail =(props) =>
     
     const [Edit, setEdit] = useState(false);
     
+    const grabRoutines = async() =>
+    {
+       const routineList = await getRoutines();
+       setRoutines(routineList);
+    }
 
     if(routines.length===0)
     {   
-        getRoutines(setRoutines);
+        grabRoutines();
     }
 
     let {routineId} = useParams();

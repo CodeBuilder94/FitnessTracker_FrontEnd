@@ -1,25 +1,26 @@
 
 //function to get all routines
-export const getRoutines = ( async(setRoutines) =>{
-    fetch('http://fitnesstrac-kr.herokuapp.com/api/routines')
+export const getRoutines = ( async() =>{
+   return fetch('http://fitnesstrac-kr.herokuapp.com/api/routines')
     .then(response => response.json())
   .then(result => {
-    setRoutines(result);
+    //console.log(result);
+    return result;
   })
   .catch(console.error);
 });
 
 
 //fetching user routines into My Routines page
-export const getUserRoutines = async (setUserRoutines, user) => {
+export const getUserRoutines = async (user) => {
   fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/${user.username}/routines`, {
     headers: {
       'Content-Type': 'application/json',
     },
   }).then(response => response.json())
     .then(result => {
-      console.log(result);
-      setUserRoutines(result);
+      
+      return result;
     })
     .catch(console.error);
   };
@@ -91,7 +92,7 @@ export const stayIn = async(token) =>
 {  //console.log(token);
   if(token)
   {
-    fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/me`,{
+    return fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/me`,{
       headers:{
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -99,7 +100,7 @@ export const stayIn = async(token) =>
     }).then(response => response.json())
     .then(result => {
       const user =result;
-      console.log(user);
+      //console.log(user);
       return user;
 
     })
@@ -113,7 +114,7 @@ export const stayIn = async(token) =>
 }
 
 //create a new routine
-export const CreateRoutine = (routineName, routineGoal) =>{
+export const MakeRoutine = (routineName, routineGoal, token) =>{
   fetch('http://fitnesstrac-kr.herokuapp.com/api/routines', {
   method: "POST",
   body: JSON.stringify({
