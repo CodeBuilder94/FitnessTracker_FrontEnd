@@ -77,6 +77,7 @@ export const login = (async(loginUser, loginPass) =>{
     
     //set the token in localStorage
     const token =result.token;
+    console.log(token)
     window.localStorage.setItem("token", token)
     return result;
   })
@@ -128,6 +129,26 @@ export const MakeRoutine = (routineName, routineGoal) =>{
     name: `${routineName}`,
     goal: `${routineGoal}`,
     isPublic: true
+  })
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch(console.error);
+}
+
+export const ActivityPost = (activityName, activityDescription) =>{
+
+  const token = window.localStorage.getItem("token");
+
+fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
+  method: "POST", headers:{
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
+  body: JSON.stringify({
+    name: `${activityName}`,
+    description: `${activityDescription}`
   })
 }).then(response => response.json())
   .then(result => {
