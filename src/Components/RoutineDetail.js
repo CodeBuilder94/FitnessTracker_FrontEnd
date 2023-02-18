@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useParams } from "react-router-dom";
-import { getRoutines } from "../api";
+import { getRoutines, removeRoutineActivity } from "../api";
 import {AddActivities} from "/";
 
 const RoutineDetail =(props) =>
@@ -9,13 +9,16 @@ const RoutineDetail =(props) =>
     
     const [Edit, setEdit] = useState(false);
 
-const [currentRId, setCurrentRId] = useState(null);
+    const [currentRId, setCurrentRId] = useState(null);
+        
+    const allowEdit = ()=>
+        {
+            setEdit(true);
+        }
     
-const allowEdit = ()=>
-    {
-        setEdit(true);
+    const chunkActivity = async(routineActivityId) =>{
+        await removeRoutineActivity(routineActivityId);
     }
-
 
     let {routineId} = useParams();
     let id = Number(routineId.slice(1));
@@ -44,7 +47,7 @@ const allowEdit = ()=>
                         routine.activities.map  ((activity) =>{
                             return <li key={activity.id}>
                                 <h4>{activity.name}</h4>
-                                {user.id === routine.creatorId ? <button>Remove Activity</button>:null}
+                                {user.id === routine.creatorId ? <button onClick={() =>chunkActivity(activity.routineActivityId)}>Remove Activity</button>:null}
                                 <p><b>Description: </b>{activity.description}</p>
                                 <p><b>Duration: </b>{activity.duration}</p>
                                 <p><b>Count: </b>{activity.count} reps</p>
@@ -60,7 +63,7 @@ const allowEdit = ()=>
                     </form> 
                     :null}</div>
             </div>:null}
-            <AddActivities currentRId={currentRId} activities={activities}/>
+            {routine && user.id === routine.creatorId ?<AddActivities currentRId={currentRId} activities={activities}/>: null}
             </div>
 }
 

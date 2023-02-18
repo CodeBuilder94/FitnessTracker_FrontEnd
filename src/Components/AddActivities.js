@@ -11,9 +11,11 @@ const AddActivities= (props) =>
 
     
     const addAct = async(ev) =>{
-        ev.preventDefault();
         
-        await giveRoutineActivity(currentRId, activityId, count, duration);
+        ev.preventDefault();
+        const routineId =currentRId.slice(1);
+        
+        await giveRoutineActivity(routineId, activityId, count, duration);
         
         setCount(0);
         setDuration(0);

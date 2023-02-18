@@ -158,18 +158,37 @@ export const deleteRoutine = async(id) =>
 
 export const giveRoutineActivity = async(routineId, activityId, count, duration) =>
 {
-  const id= Number(activityId);
-  const reps = Number(count);
-  const time = Number(duration);
   
+  const token = window.localStorage.getItem("token");
 
   fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}/activities`, {
   method: "POST",
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
   body: JSON.stringify({
-    activityId: id,
-    count: reps, 
-    duration: time
+    activityId: `${activityId}`,
+    count: `${count}`, 
+    duration: `${duration}`
   })
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch(console.error);
+}
+
+export const removeRoutineActivity = async(routineActivityId) =>
+{
+  const token = window.localStorage.getItem("token");
+
+  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routine_activities/${routineActivityId}`, {
+  method: "DELETE",
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }
 }).then(response => response.json())
   .then(result => {
     console.log(result);
