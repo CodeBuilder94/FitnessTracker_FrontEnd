@@ -16,9 +16,8 @@ const CreateRoutine =(props) =>{
         await MakeRoutine(routineName, routineGoal, token);
         setRoutineGoal("");
         setRoutineName("");
-        //Have the getRoutines run in the MyRoutines component or getRoutines(setRoutines);
-        const routineList = await getRoutines();
-        setRoutines(routineList);
+        
+       
     }
 
     return <div id="CreateForm">

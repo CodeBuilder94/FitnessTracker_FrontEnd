@@ -1,31 +1,44 @@
 import React, {useState} from "react";
-import { getActivities } from "../api";
+import { getActivities, giveRoutineActivity } from "../api";
 
 const AddActivities= (props) =>
 {
-    const {currentRId, activities, setActivties} = props;
+    const {currentRId, activities} = props;
 
-    //get the activities
-    const grabActivities = async() =>{
-        const allActivities = await getActivities();
-        setActivties(allActivities);
-    }
+    const [count, setCount] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const [activityId, setActivityId] =useState(0);
 
-    if(!activities)
-    {
-        grabActivities();
+    
+    const addAct = async(ev) =>{
+        ev.preventDefault();
+        
+        await giveRoutineActivity(currentRId, activityId, count, duration);
+        
+        setCount(0);
+        setDuration(0);
+        setActivityId(0);
+
     }
+    
 
     return <div id="AddActivityForm">
-        <form>
-            <b>Select Activity</b>
-            <select>
+        <form onSubmit={addAct}>
+            <label>Select Activity
+            <select name="SelectedActivity" onChange={ev => setActivityId(ev.target.value)}>
                 {
                     activities.map((activity) =>{
-                        <option key={activity.id}>{activity.name}</option>
+                       return <option key={activity.id} value={activity.id}>{activity.name}</option>
                     })
                 }
             </select>
+            </label>
+            <label>Reps:
+                <input placeholder="count" onChange={ev => setCount(ev.target.value)}></input>
+            </label>
+            <label>Minutes:
+                <input placeholder="duration" onChange={ev => setDuration(ev.target.value)}></input>
+            </label>
             <button>Add</button>
         </form>
     </div>

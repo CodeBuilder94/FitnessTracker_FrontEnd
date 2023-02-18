@@ -35,7 +35,7 @@ export const getActivities = (async(setActivities) =>{
   }).then(response => response.json())
     .then(result => {
       //console.log(result);
-      setActivities(result);
+      //setActivities(result);
       return result;
     })
     .catch(console.error);
@@ -152,6 +152,27 @@ export const deleteRoutine = async(id) =>
 }).then(response => response.json())
   .then(result => {
     
+  })
+  .catch(console.error);
+}
+
+export const giveRoutineActivity = async(routineId, activityId, count, duration) =>
+{
+  const id= Number(activityId);
+  const reps = Number(count);
+  const time = Number(duration);
+  
+
+  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}/activities`, {
+  method: "POST",
+  body: JSON.stringify({
+    activityId: id,
+    count: reps, 
+    duration: time
+  })
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
   })
   .catch(console.error);
 }

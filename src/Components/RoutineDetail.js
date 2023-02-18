@@ -1,43 +1,38 @@
 import React, {useState} from "react";
 import { useParams } from "react-router-dom";
 import { getRoutines } from "../api";
+import {AddActivities} from "/";
 
 const RoutineDetail =(props) =>
 {
-    const {routines, setRoutines, user, activities} = props;
+    const {routines, user, activities} = props;
     
     const [Edit, setEdit] = useState(false);
 
-    const grabRoutines = async() =>
-    {
-       if(routines.length ===0)
-       {
-        const routineList = await getRoutines();
-        setRoutines(routineList);
-       }
-       
-    }
-
-    if(routines.length===0)
-    {   
-        grabRoutines();
-    }
-
-    const allowEdit = ()=>
+const [currentRId, setCurrentRId] = useState(null);
+    
+const allowEdit = ()=>
     {
         setEdit(true);
-    }    
+    }
+
 
     let {routineId} = useParams();
     let id = Number(routineId.slice(1));
 
     const routine = routines.find(routine => routine.id === id);
-    
 
-    //const [newName, setnewName] = useState(routine.name);
-    //const [newGoal, setNewGoal] = useState(routine.goal);
+    const getRoutineId = ()=>
+    {
+        setCurrentRId(routineId);
+    }
+    if(!currentRId)
+    {
+       getRoutineId();
+    }
     
-    return <div>{routine ?<div id="RoutineDetails">
+            
+    return <div>{routine ? <div id="RoutineDetails">
             
                 <h2>{routine.name}</h2>
                 {user.id === routine.creatorId ?<button onClick={allowEdit}>Edit Routine</button>:null}
@@ -65,6 +60,7 @@ const RoutineDetail =(props) =>
                     </form> 
                     :null}</div>
             </div>:null}
+            <AddActivities currentRId={currentRId} activities={activities}/>
             </div>
 }
 
