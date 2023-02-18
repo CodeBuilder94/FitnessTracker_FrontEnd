@@ -151,6 +151,13 @@ fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
   body: JSON.stringify({
     name: `${activityName}`,
     description: `${activityDescription}`
+  })
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch(console.error);
+}
 
 //delete a routine and everyting on it
 export const deleteRoutine = async(id) =>

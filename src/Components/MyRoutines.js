@@ -39,6 +39,7 @@ const MyRoutines = (props) =>{
     }
 
     return<div>
+        
         {user ?<div>
         <h2>welcome: {user.username}</h2>
         <ul>
@@ -61,8 +62,8 @@ const MyRoutines = (props) =>{
         <CreateRoutine setRoutines={setRoutines}/>
 
     </div>
-    </form>
-  );
+    
+  
 };
-}
+
 export default MyRoutines

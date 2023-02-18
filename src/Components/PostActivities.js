@@ -3,7 +3,7 @@ import { getActivities,ActivityPost } from "../api";
 
 const PostActivities =(props) =>{
 
-    //const {token} = props;
+    const {setActivities} = props;
 
     const [activityName, setActivityName] = useState("");
     const [activityDescription, setActivityDescription] =useState("");
@@ -11,9 +11,14 @@ const PostActivities =(props) =>{
          const submit = async (ev) =>{
 
          ev.preventDefault();
-        ActivityPost(activityName, activityDescription);
+        await ActivityPost(activityName, activityDescription);
         setActivityName("");
         setActivityDescription("");
+
+        const activity = await getActivities();
+        setActivities(activity);
+
+       
     }
 
     return <div id ={"PostForm"}>
