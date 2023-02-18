@@ -1,7 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+
 import { getRoutines, removeRoutineActivity } from "../api";
 import {AddActivities} from "/";
+import EditRoutine from "./EditRoutine";
 
 const RoutineDetail =(props) =>
 {
@@ -20,10 +22,22 @@ const RoutineDetail =(props) =>
         await removeRoutineActivity(routineActivityId);
     }
 
-    let {routineId} = useParams();
-    let id = Number(routineId.slice(1));
 
-    const routine = routines.find(routine => routine.id === id);
+
+
+
+  
+
+  
+
+  let { routineId } = useParams();
+  let id = Number(routineId.slice(1));
+
+
+  const routine = routines.find((routine) => routine.id === id);
+
+
+    
 
     const getRoutineId = ()=>
     {
@@ -63,8 +77,17 @@ const RoutineDetail =(props) =>
                     </form> 
                     :null}</div>
             </div>:null}
+            <div>
+            {/* {Edit ?  */}
+              <EditRoutine
+            
+                currentRId={currentRId}
+              />
+             {/* : null} */}
+          </div>
             {routine && user.id === routine.creatorId ?<AddActivities currentRId={currentRId} activities={activities}/>: null}
             </div>
 }
+
 
 export default RoutineDetail;

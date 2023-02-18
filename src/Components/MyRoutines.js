@@ -1,3 +1,4 @@
+
 import React, {useState} from "react";
 import {getUserRoutines, stayIn, deleteRoutine} from "../api";
 import {Link} from "react-router-dom";
@@ -38,6 +39,7 @@ const MyRoutines = (props) =>{
     }
 
     return<div>
+        
         {user ?<div>
         <h2>welcome: {user.username}</h2>
         <ul>
@@ -58,9 +60,10 @@ const MyRoutines = (props) =>{
         </ul>
         </div>:null}
         <CreateRoutine setRoutines={setRoutines}/>
-    </div>
-}
 
+    </div>
+    
   
+};
 
 export default MyRoutines

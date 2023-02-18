@@ -78,6 +78,7 @@ export const login = (async(loginUser, loginPass) =>{
     
     //set the token in localStorage
     const token =result.token;
+    console.log(token)
     window.localStorage.setItem("token", token)
     return result;
   })
@@ -138,6 +139,27 @@ export const MakeRoutine = async (routineName, routineGoal) =>{
   .catch(console.error);
 }
 
+
+export const ActivityPost = (activityName, activityDescription) =>{
+
+  const token = window.localStorage.getItem("token");
+
+fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
+  method: "POST", headers:{
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
+  body: JSON.stringify({
+    name: `${activityName}`,
+    description: `${activityDescription}`
+  })
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch(console.error);
+}
+
 //delete a routine and everyting on it
 export const deleteRoutine = async(id) =>
 {
@@ -156,6 +178,7 @@ export const deleteRoutine = async(id) =>
   .catch(console.error);
 }
 
+
 export const giveRoutineActivity = async(routineId, activityId, count, duration) =>
 {
   
@@ -171,6 +194,26 @@ export const giveRoutineActivity = async(routineId, activityId, count, duration)
     activityId: `${activityId}`,
     count: `${count}`, 
     duration: `${duration}`
+     })
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch(console.error);
+
+// edit a routine
+
+export const updateRoutine = async(editRoutineName, editRoutineGoal, currentRId) => {
+
+  const token = window.localStorage.getItem("token");
+
+  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${editRoutineId}`, {
+  method: "PATCH",
+  body: JSON.stringify({
+    name: `${editRoutineName}`,
+    goal: `${editRoutineGoal}`
+
+
   })
 }).then(response => response.json())
   .then(result => {
@@ -178,6 +221,7 @@ export const giveRoutineActivity = async(routineId, activityId, count, duration)
   })
   .catch(console.error);
 }
+
 
 export const removeRoutineActivity = async(routineActivityId) =>
 {
@@ -195,3 +239,4 @@ export const removeRoutineActivity = async(routineActivityId) =>
   })
   .catch(console.error);
 }
+
