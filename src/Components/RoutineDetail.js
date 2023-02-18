@@ -70,20 +70,9 @@ const RoutineDetail =(props) =>
                     }
                     </ol>
                 :null}</div>
-                <div>{Edit ?
-                    <form>
-                        <input placeholder="newName"></input>
-                        <input placeholder="newGoal"></input>
-                    </form> 
-                    :null}</div>
             </div>:null}
             <div>
-            {/* {Edit ?  */}
-              <EditRoutine
-            
-                currentRId={currentRId}
-              />
-             {/* : null} */}
+             {Edit ? <EditRoutine currentRId={currentRId} /> : null} 
           </div>
             {routine && user.id === routine.creatorId ?<AddActivities currentRId={currentRId} activities={activities}/>: null}
             </div>

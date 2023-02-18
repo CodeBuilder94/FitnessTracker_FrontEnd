@@ -16,6 +16,7 @@ const EditRoutine = (props) => {
 
   return (
     <div id="EditForm">
+      <h2>Edit Routine</h2>
       <form onSubmit={submit}>
         <input
           placeholder="Routine Name"

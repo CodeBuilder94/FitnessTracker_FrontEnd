@@ -200,7 +200,7 @@ export const giveRoutineActivity = async(routineId, activityId, count, duration)
     console.log(result);
   })
   .catch(console.error);
-
+}
 // edit a routine
 
 export const updateRoutine = async(editRoutineName, editRoutineGoal, currentRId) => {
