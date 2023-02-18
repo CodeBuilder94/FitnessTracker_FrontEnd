@@ -3,7 +3,7 @@ import { getActivities,ActivityPost } from "../api";
 
 const PostActivities =(props) =>{
 
-    const {setActivities} = props;
+   
 
     const [activityName, setActivityName] = useState("");
     const [activityDescription, setActivityDescription] =useState("");
@@ -16,7 +16,7 @@ const PostActivities =(props) =>{
         setActivityDescription("");
 
         const activity = await getActivities();
-        setActivities(activity);
+       
 
        
     }

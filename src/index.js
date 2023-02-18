@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {HashRouter, Routes ,Route, Navigate} from 'react-router-dom';
 import { getRoutines, stayIn } from './api';
-import { Header, Routines, Activities, LoginRegister, RoutineDetail, MyRouitines} from './Components';
+import { Header, Routines, Activities, LoginRegister, RoutineDetail, MyRouitines } from './Components';
 
 
 const App = ()=> {
