@@ -9,7 +9,7 @@ const Activities =(props) =>{
 
     const {activities,setActivities,user} = props;
      getActivities(setActivities);
-      console.log(user)
+      
     return <div>
               <h1>Activities</h1>
               <ul>{
@@ -28,7 +28,6 @@ const Activities =(props) =>{
                    })                 
               }
               </ul>
-
 
               {user.id?<PostActivities/>:null}
 

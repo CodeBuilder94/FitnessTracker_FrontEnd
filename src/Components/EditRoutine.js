@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { updateRoutine,getRoutines } from "../api";
+import { updateRoutine } from "../api";
 
 const EditRoutine = (props) => {
   const {currentRId, currentName, currentGoal, setRoutines } = props;

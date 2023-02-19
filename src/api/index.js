@@ -4,7 +4,6 @@ export const getRoutines = ( async() =>{
    return fetch('http://fitnesstrac-kr.herokuapp.com/api/routines')
     .then(response => response.json())
   .then(result => {
-    //console.log(result);
     return result;
   })
   .catch(console.error);
@@ -38,8 +37,6 @@ export const getActivities = (async() =>{
     },
   }).then(response => response.json())
     .then(result => {
-      //console.log(result);
-
 
     return result 
    })
@@ -85,7 +82,6 @@ export const login = (async(loginUser, loginPass) =>{
     
     //set the token in localStorage
     const token =result.token;
-    console.log(token)
     window.localStorage.setItem("token", token)
     return result;
   })
@@ -99,7 +95,7 @@ export const logout = () =>
 }
 
 export const stayIn = async(token) =>
-{  //console.log(token);
+{  
   if(token)
   {
     return fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/me`,{
@@ -110,7 +106,7 @@ export const stayIn = async(token) =>
     }).then(response => response.json())
     .then(result => {
       const user =result;
-      //console.log(user);
+      
       return user;
 
     })
@@ -141,7 +137,7 @@ export const MakeRoutine = async (routineName, routineGoal) =>{
   })
 }).then(response => response.json())
   .then(result => {
-    console.log(result);
+    
   })
   .catch(console.error);
 }
@@ -230,7 +226,7 @@ export const updateRoutine = async(editRoutineName, editRoutineGoal, editRoutine
   })
 }).then(response => response.json())
   .then(result => {
-    console.log(result);
+    
   })
   .catch(console.error);
 }
@@ -249,7 +245,7 @@ export const removeRoutineActivity = async(routineActivityId) =>
   }
 }).then(response => response.json())
   .then(result => {
-    console.log(result);
+    
   })
   .catch(console.error);
 }
@@ -271,7 +267,7 @@ export const updateRoutineActivity = async(id, count, duration) =>
   })
 }).then(response => response.json())
   .then(result => {
-    console.log(result);
+    
 
   })
   .catch(console.error);
