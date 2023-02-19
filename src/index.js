@@ -53,7 +53,7 @@ const App = ()=> {
         <Routes>
           <Route path = '/signIn' element={<LoginRegister user={user} setUser={setUser} token={token} setToken={setToken} />}/>
           <Route path='/routines' element={<Routines routines={routines} setRoutines={setRoutines} user={user}/>}/>
-          <Route path ='/activities' element={<Activities activities={activities} setActivities={setActivities}/>}/>
+          <Route path ='/activities' element={<Activities activities={activities} setActivities={setActivities} user={user}/>}/>
           <Route path = '/MyRoutines' element = {<MyRouitines user={user} setUser={setUser} setRoutines={setRoutines}/>}/>
 
        

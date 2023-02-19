@@ -7,10 +7,11 @@ import {PostActivities} from "/";
 const Activities =(props) =>{
 
 
-    const {activities,setActivities} = props;
+    const {activities,setActivities,user} = props;
      getActivities(setActivities);
-
+      console.log(user)
     return <div>
+              <h1>Activities</h1>
               <ul>{
 
                    activities.map((activity)=>{
@@ -29,7 +30,7 @@ const Activities =(props) =>{
               </ul>
 
 
-              <PostActivities/><h1>Activities</h1>
+              {user.id?<PostActivities/>:null}
 
              </div>
 
