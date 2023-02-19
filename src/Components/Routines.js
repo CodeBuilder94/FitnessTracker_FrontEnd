@@ -6,7 +6,7 @@ const Routines = (props) =>
 {
     const {routines, setRoutines, user} = props;
      
-   const grabRoutines = async() =>{
+   /*const grabRoutines = async() =>{
         const routineList = await getRoutines();
         
         setRoutines(routineList);
@@ -14,7 +14,7 @@ const Routines = (props) =>
    if(routines.length ===0)
    {
         grabRoutines();
-   }
+   }*/
    
     return <div>
         <h2>Routines</h2>

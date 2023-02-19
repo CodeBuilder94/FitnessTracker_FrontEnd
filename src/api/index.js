@@ -27,7 +27,9 @@ export const getUserRoutines = async (user) => {
   };
 
 //fetching data from activities
+
 export const getActivities = (async() =>{
+
   return fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
     headers: {
       'Content-Type': 'application/json',
@@ -35,8 +37,9 @@ export const getActivities = (async() =>{
   }).then(response => response.json())
     .then(result => {
       //console.log(result);
+
     return result 
-    })
+   })
     .catch(console.error);
   });
 
@@ -139,11 +142,11 @@ export const MakeRoutine = async (routineName, routineGoal) =>{
 }
 
 
-export const ActivityPost = (activityName, activityDescription) =>{
+export const ActivityPost = async(activityName, activityDescription) =>{
 
   const token = window.localStorage.getItem("token");
 
-fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
+ return fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
   method: "POST", headers:{
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${token}`
@@ -155,6 +158,9 @@ fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
 }).then(response => response.json())
   .then(result => {
     console.log(result);
+    if(result.error){
+      return result.error
+    }
   })
   .catch(console.error);
 }
@@ -177,6 +183,29 @@ export const deleteRoutine = async(id) =>
   .catch(console.error);
 }
 
+
+export const giveRoutineActivity = async(routineId, activityId, count, duration) =>
+{
+  
+  const token = window.localStorage.getItem("token");
+
+  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}/activities`, {
+  method: "POST",
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
+  body: JSON.stringify({
+    activityId: `${activityId}`,
+    count: `${count}`, 
+    duration: `${duration}`
+     })
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch(console.error);
+}
 // edit a routine
 
 export const updateRoutine = async(editRoutineName, editRoutineGoal, currentRId) => {
@@ -189,6 +218,7 @@ export const updateRoutine = async(editRoutineName, editRoutineGoal, currentRId)
     name: `${editRoutineName}`,
     goal: `${editRoutineGoal}`
 
+
   })
 }).then(response => response.json())
   .then(result => {
@@ -196,3 +226,24 @@ export const updateRoutine = async(editRoutineName, editRoutineGoal, currentRId)
   })
   .catch(console.error);
 }
+
+
+export const removeRoutineActivity = async(routineActivityId) =>
+{
+  const token = window.localStorage.getItem("token");
+
+  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routine_activities/${routineActivityId}`, {
+  method: "DELETE",
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch(console.error);
+}
+
+
+

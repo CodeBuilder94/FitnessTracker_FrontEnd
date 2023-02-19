@@ -5,6 +5,10 @@ export {default as LoginRegister} from "./LoginRegister";
 export {default as RoutineDetail} from "./RoutineDetail";
 export {default as CreateRoutine} from "./CreateRoutine";
 export {default as MyRouitines} from "./MyRoutines";
+
 export {default as PostActivities} from "./PostActivities"
+
+
+export {default as AddActivities} from "./AddActivities";
 
 

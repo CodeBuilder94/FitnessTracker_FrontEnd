@@ -7,11 +7,12 @@ const PostActivities =(props) =>{
 
     const [activityName, setActivityName] = useState("");
     const [activityDescription, setActivityDescription] =useState("");
-
+      const [error,setError] = useState("");
          const submit = async (ev) =>{
 
          ev.preventDefault();
-        await ActivityPost(activityName, activityDescription);
+       const gotError = await ActivityPost(activityName, activityDescription);
+        setError(gotError);
         setActivityName("");
         setActivityDescription("");
 
@@ -28,6 +29,7 @@ const PostActivities =(props) =>{
             <button>Submit</button>
 
         </form>
+        {error?<p>{error}</p>:null}
     </div>
 
 

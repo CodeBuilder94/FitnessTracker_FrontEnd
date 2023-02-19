@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {HashRouter, Routes ,Route, Navigate} from 'react-router-dom';
-import { getRoutines, stayIn } from './api';
-import { Header, Routines, Activities, LoginRegister, RoutineDetail, MyRouitines } from './Components';
+import { getActivities, getRoutines, stayIn } from './api';
+import { Header, Routines, Activities, LoginRegister, RoutineDetail, MyRouitines} from './Components';
+
 
 
 const App = ()=> {
@@ -15,6 +16,14 @@ const App = ()=> {
 
   useEffect(()=>{
 
+    const getStuff = async() =>
+    {
+      const allRoutines = await getRoutines();
+      setRoutines(allRoutines);
+
+      const allActivities = await getActivities();
+      setActivities(allActivities);
+    }
 
     const checkLogin = async () =>{
       if(window.localStorage.getItem("token"))
@@ -28,6 +37,7 @@ const App = ()=> {
     }
 
     checkLogin();
+    getStuff();
    
   },[])
 
@@ -45,7 +55,7 @@ const App = ()=> {
           <Route path='/routines' element={<Routines routines={routines} setRoutines={setRoutines} user={user}/>}/>
           <Route path ='/activities' element={<Activities activities={activities} setActivities={setActivities}/>}/>
           <Route path = '/MyRoutines' element = {<MyRouitines user={user} setUser={setUser} setRoutines={setRoutines}/>}/>
-          <Route path = '/routines/:routineId' element={<RoutineDetail routines={routines} setRoutines={setRoutines} user={user} />}/>
+          <Route path = '/routines/:routineId' element={<RoutineDetail routines={routines} user={user} activities={activities}/>}/>
           <Route path='/' element={<Navigate to="/routines"/> /*makes the routines page default for now.*/}/>
         </Routes>
       }
