@@ -244,7 +244,23 @@ export const removeRoutineActivity = async(routineActivityId) =>
 }
 
 //update an activity on a routine
-export const updateRoutineActivity = async(routineActivityId, count, duration) =>
+export const updateRoutineActivity = async(id, count, duration) =>
 {
+  const token = window.localStorage.getItem("token");
 
+  fetch(`http://fitnesstrac-kr.herokuapp.com/api/api/routine_activities/${id}`, {
+  method: "PATCH",
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
+  body: JSON.stringify({
+    count: `${count}`,
+    duration: `${duration}`
+  })
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch(console.error);
 }

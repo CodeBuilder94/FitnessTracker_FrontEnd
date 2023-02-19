@@ -9,13 +9,13 @@ const UpdateRoutineActivityForm =({id, startingCount, startingDuration}) =>
 
     const setDefault =() =>
     {
-        setDuration();
-        setCount();
+        setDuration(startingDuration);
+        setCount(startingCount);
     }
 
     const update =(ev) =>
     {   ev.preventDefault();
-        //await updateRoutineActivity(routineActivityId, count, duration);
+        updateRoutineActivity(id, count, duration);
     }
 
     return <div id="updateForm">
