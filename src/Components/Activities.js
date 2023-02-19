@@ -27,7 +27,10 @@ const Activities =(props) =>{
                    })                 
               }
               </ul>
-              {<PostActivities/>}<h1>Activities</h1>
+
+
+              <PostActivities/><h1>Activities</h1>
+
              </div>
 
 

@@ -28,7 +28,9 @@ export const getUserRoutines = async (user) => {
 
 //fetching data from activities
 
+
 export const getActivities = (async() =>{
+
 
   return fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
     headers: {
@@ -38,8 +40,11 @@ export const getActivities = (async() =>{
     .then(result => {
       //console.log(result);
 
+
     return result 
    })
+
+     
     .catch(console.error);
   });
 
@@ -208,17 +213,20 @@ export const giveRoutineActivity = async(routineId, activityId, count, duration)
 }
 // edit a routine
 
-export const updateRoutine = async(editRoutineName, editRoutineGoal, currentRId) => {
+export const updateRoutine = async(editRoutineName, editRoutineGoal, editRoutineId) => {
 
   const token = window.localStorage.getItem("token");
 
   fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${editRoutineId}`, {
   method: "PATCH",
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
   body: JSON.stringify({
     name: `${editRoutineName}`,
-    goal: `${editRoutineGoal}`
-
-
+    goal: `${editRoutineGoal}`,
+    isPublic: true
   })
 }).then(response => response.json())
   .then(result => {
@@ -226,6 +234,7 @@ export const updateRoutine = async(editRoutineName, editRoutineGoal, currentRId)
   })
   .catch(console.error);
 }
+
 
 
 export const removeRoutineActivity = async(routineActivityId) =>
@@ -245,5 +254,27 @@ export const removeRoutineActivity = async(routineActivityId) =>
   .catch(console.error);
 }
 
+//update an activity on a routine
+export const updateRoutineActivity = async(id, count, duration) =>
+{
+  const token = window.localStorage.getItem("token");
+
+  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routine_activities/${id}`, {
+  method: "PATCH",
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
+  body: JSON.stringify({
+    count: `${count}`,
+    duration: `${duration}`
+  })
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+
+  })
+  .catch(console.error);
+}
 
 

@@ -16,7 +16,10 @@ const CreateRoutine =(props) =>{
         await MakeRoutine(routineName, routineGoal, token);
         setRoutineGoal("");
         setRoutineName("");
-        
+
+        const allRoutines = await getRoutines();
+        setRoutines(allRoutines);
+
        
     }
 

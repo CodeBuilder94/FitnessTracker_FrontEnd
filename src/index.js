@@ -55,7 +55,10 @@ const App = ()=> {
           <Route path='/routines' element={<Routines routines={routines} setRoutines={setRoutines} user={user}/>}/>
           <Route path ='/activities' element={<Activities activities={activities} setActivities={setActivities}/>}/>
           <Route path = '/MyRoutines' element = {<MyRouitines user={user} setUser={setUser} setRoutines={setRoutines}/>}/>
-          <Route path = '/routines/:routineId' element={<RoutineDetail routines={routines} user={user} activities={activities}/>}/>
+
+       
+          <Route path = '/routines/:routineId' element={<RoutineDetail routines={routines} user={user} activities={activities} setRoutines={setRoutines}/>}/>
+
           <Route path='/' element={<Navigate to="/routines"/> /*makes the routines page default for now.*/}/>
         </Routes>
       }
