@@ -8,3 +8,5 @@ export {default as MyRouitines} from "./MyRoutines";
 export {default as AddActivities} from "./AddActivities";
 export {default as PostActivities} from "./PostActivities"
 export {default as UpdateRoutineActivityForm} from "./UpdateRoutineActivityForm";
+export {default as ActivitiesByRoutines} from "./ActivitiesByRoutines";
+export {default as UserPublicRoutines} from "./UserPublicRoutines";

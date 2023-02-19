@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 
 import {removeRoutineActivity } from "../api";
@@ -71,7 +71,7 @@ const RoutineDetail =(props) =>
                     {
                         routine.activities.map  ((activity) =>{
                             return <li key={activity.id}>
-                                <h4>{activity.name}</h4>
+                                <h4><Link to={`/activities/:${activity.id}`}>{activity.name}</Link></h4>
                                 {user.id === routine.creatorId ? <button onClick={() =>chunkActivity(activity.routineActivityId)}>Remove Activity</button>:null}
                                 <p><b>Description: </b>{activity.description}</p>
 
