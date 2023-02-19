@@ -248,7 +248,7 @@ export const updateRoutineActivity = async(id, count, duration) =>
 {
   const token = window.localStorage.getItem("token");
 
-  fetch(`http://fitnesstrac-kr.herokuapp.com/api/api/routine_activities/${id}`, {
+  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routine_activities/${id}`, {
   method: "PATCH",
   headers: {
     'Content-Type': 'application/json',

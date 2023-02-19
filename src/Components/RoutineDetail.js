@@ -11,13 +11,14 @@ const RoutineDetail =(props) =>
     
     const [Edit, setEdit] = useState(false);
     const [editActiveActivity, setEditActiveActivity] = useState(false);
-    const [rAId, setRAId] = useState = useState(0);
+    const [rAId, setRAId] = useState(0);
     const [currentRId, setCurrentRId] = useState(null);
     const [currentName, setCurrentName] = useState("");
     const [currentGoal, setCurrentGoal] = useState("");
-    const [activityCount, setActivityCount] =useState(0);
+    const [activityCount, setActivityCount] = useState(0);
     const [activityDuration, setActivityDuration] = useState(0);
-        
+    
+    
     const allowEdit = ()=>
         {
             setEdit(true);

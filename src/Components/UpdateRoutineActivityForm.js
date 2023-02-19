@@ -2,11 +2,11 @@ import React, {useState} from "react";
 import { updateRoutineActivity } from "../api";
 
 
-const UpdateRoutineActivityForm =({id, startingCount, startingDuration}) =>
+const UpdateRoutineActivityForm =({rAId, startingCount, startingDuration}) =>
 {
     const [duration, setDuration] = useState("");
     const [count, setCount] = useState("");
-
+    
     const setDefault =() =>
     {
         setDuration(startingDuration);
@@ -15,7 +15,9 @@ const UpdateRoutineActivityForm =({id, startingCount, startingDuration}) =>
 
     const update =(ev) =>
     {   ev.preventDefault();
-        updateRoutineActivity(id, count, duration);
+
+        setDefault();
+        updateRoutineActivity(rAId, count, duration);
     }
 
     return <div id="updateForm">
