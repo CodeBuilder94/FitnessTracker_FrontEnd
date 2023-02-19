@@ -288,3 +288,18 @@ export const getRoutinesWithActivity = async(id)=>
   })
   .catch(console.error);
 }
+
+
+//get routiens by a user
+export const routinesByUser =async (username) =>
+{
+  return fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/${username}/routines`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(response => response.json())
+    .then(result => {
+      return result
+    })
+    .catch(console.error);
+}

@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import {getRoutinesWithActivity} from "../api"
 
 
-const ActivitiesByRoutines =({routines, activities,}) =>
+const ActivitiesByRoutines =() =>
 {
     let {activityId} = useParams();
     let id = Number(activityId.slice(1));
