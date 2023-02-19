@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {HashRouter, Routes ,Route, Navigate} from 'react-router-dom';
 import { getActivities, getRoutines, stayIn } from './api';
-import { Header, Routines, Activities, LoginRegister, RoutineDetail, MyRouitines} from './Components';
+import { Header, Routines, Activities, LoginRegister, RoutineDetail, MyRouitines, ActivitiesByRoutines} from './Components';
 
 
 
@@ -56,6 +56,7 @@ const App = ()=> {
           <Route path ='/activities' element={<Activities activities={activities} setActivities={setActivities} user={user}/>}/>
           <Route path = '/MyRoutines' element = {<MyRouitines user={user} setUser={setUser} setRoutines={setRoutines}/>}/>
           <Route path = '/routines/:routineId' element={<RoutineDetail routines={routines} user={user} activities={activities} setRoutines={setRoutines}/>}/>
+          <Route path = '/activities/:activityId' element ={<ActivitiesByRoutines routines={routines} activities={activities}/>}/>
           <Route path='/' element={<Navigate to="/routines"/> }/>
         </Routes>
       }
