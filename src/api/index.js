@@ -1,7 +1,7 @@
 
 //function to get all routines
 export const getRoutines = ( async() =>{
-   return fetch('http://fitnesstrac-kr.herokuapp.com/api/routines')
+   return fetch('https://fitnesstrac-kr.herokuapp.com/api/routines')
     .then(response => response.json())
   .then(result => {
     return result;
@@ -13,7 +13,7 @@ export const getRoutines = ( async() =>{
 //fetching user routines into My Routines page
 export const getUserRoutines = async (user) => {
   const token = window.localStorage.getItem('token');
-  return fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/${user.username}/routines`, {
+  return fetch(`https://fitnesstrac-kr.herokuapp.com/api/users/${user.username}/routines`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
@@ -31,7 +31,7 @@ export const getUserRoutines = async (user) => {
 export const getActivities = (async() =>{
 
 
-  return fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
+  return fetch('https://fitnesstrac-kr.herokuapp.com/api/activities', {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -47,7 +47,7 @@ export const getActivities = (async() =>{
 
 //functions that handle registration and loging in
 export const register = (async(registerName, registerPassword) =>{
-  return fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
+  return fetch('https://fitnesstrac-kr.herokuapp.com/api/users/register', {
   method: "POST",
   headers: {
     'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export const register = (async(registerName, registerPassword) =>{
 
 
 export const login = (async(loginUser, loginPass) =>{
-  return fetch('http://fitnesstrac-kr.herokuapp.com/api/users/login', {
+  return fetch('https://fitnesstrac-kr.herokuapp.com/api/users/login', {
   method: "POST",
   headers: {
     'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ export const stayIn = async(token) =>
 {  
   if(token)
   {
-    return fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/me`,{
+    return fetch(`https://fitnesstrac-kr.herokuapp.com/api/users/me`,{
       headers:{
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -124,7 +124,7 @@ export const MakeRoutine = async (routineName, routineGoal) =>{
   
   const token = window.localStorage.getItem("token");
 
-  fetch('http://fitnesstrac-kr.herokuapp.com/api/routines', {
+  fetch('https://fitnesstrac-kr.herokuapp.com/api/routines', {
   method: "POST",
   headers: {
     'Content-Type': 'application/json',
@@ -147,7 +147,7 @@ export const ActivityPost = async(activityName, activityDescription) =>{
 
   const token = window.localStorage.getItem("token");
 
- return fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
+ return fetch('https://fitnesstrac-kr.herokuapp.com/api/activities', {
   method: "POST", headers:{
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${token}`
@@ -171,7 +171,7 @@ export const deleteRoutine = async(id) =>
 {
   const token = window.localStorage.getItem("token");
 
-  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${id}`, {
+  fetch(`https://fitnesstrac-kr.herokuapp.com/api/routines/${id}`, {
   method: "DELETE",
   headers: {
     'Content-Type': 'application/json',
@@ -190,7 +190,7 @@ export const giveRoutineActivity = async(routineId, activityId, count, duration)
   
   const token = window.localStorage.getItem("token");
 
-  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}/activities`, {
+  fetch(`https://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}/activities`, {
   method: "POST",
   headers: {
     'Content-Type': 'application/json',
@@ -213,7 +213,7 @@ export const updateRoutine = async(editRoutineName, editRoutineGoal, editRoutine
 
   const token = window.localStorage.getItem("token");
 
-  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${editRoutineId}`, {
+  fetch(`https://fitnesstrac-kr.herokuapp.com/api/routines/${editRoutineId}`, {
   method: "PATCH",
   headers: {
     'Content-Type': 'application/json',
@@ -237,7 +237,7 @@ export const removeRoutineActivity = async(routineActivityId) =>
 {
   const token = window.localStorage.getItem("token");
 
-  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routine_activities/${routineActivityId}`, {
+  fetch(`https://fitnesstrac-kr.herokuapp.com/api/routine_activities/${routineActivityId}`, {
   method: "DELETE",
   headers: {
     'Content-Type': 'application/json',
@@ -255,7 +255,7 @@ export const updateRoutineActivity = async(id, count, duration) =>
 {
   const token = window.localStorage.getItem("token");
 
-  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routine_activities/${id}`, {
+  fetch(`https://fitnesstrac-kr.herokuapp.com/api/routine_activities/${id}`, {
   method: "PATCH",
   headers: {
     'Content-Type': 'application/json',
@@ -277,7 +277,7 @@ export const updateRoutineActivity = async(id, count, duration) =>
 //get all routines that share a activity
 export const getRoutinesWithActivity = async(id)=>
 {
-  return fetch(`http://fitnesstrac-kr.herokuapp.com/api/activities/${id}/routines`, {
+  return fetch(`https://fitnesstrac-kr.herokuapp.com/api/activities/${id}/routines`, {
   headers: {
     'Content-Type': 'application/json',
   },
@@ -293,7 +293,7 @@ export const getRoutinesWithActivity = async(id)=>
 //get routiens by a user
 export const routinesByUser =async (username) =>
 {
-  return fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/${username}/routines`, {
+  return fetch(`https://fitnesstrac-kr.herokuapp.com/api/users/${username}/routines`, {
     headers: {
       'Content-Type': 'application/json',
     },
